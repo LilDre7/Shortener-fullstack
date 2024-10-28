@@ -5,8 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
   try {
     const { url } = await request.json();
+    console.log(url)
 
-    // Validar que 'url' esté presente
     if (!url) {
       return NextResponse.json({ error: "URL is required" }, { status: 400 });
     }

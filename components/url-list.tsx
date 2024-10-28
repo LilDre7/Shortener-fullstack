@@ -23,7 +23,7 @@ export default function UrlList() {
   const fetchUrls = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("/api/urls/");
+      const response = await fetch("/api/urls");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
