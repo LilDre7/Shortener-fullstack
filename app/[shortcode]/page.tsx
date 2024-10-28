@@ -6,7 +6,6 @@ interface RedirectPageProps {
 }
 
 export default async function RedirectPage({ params }: RedirectPageProps) {
-  // Elimina Promise.resolve y desestructura directamente
   const { shortcode } = params;
 
   const url = await prisma.url.findUnique({
@@ -14,7 +13,7 @@ export default async function RedirectPage({ params }: RedirectPageProps) {
   });
 
   if (!url) {
-    return <div>404 - NOT FOUND</div>;
+    return <div>404 - NO ENCONTRADO</div>;
   }
 
   await prisma.url.update({
@@ -24,5 +23,9 @@ export default async function RedirectPage({ params }: RedirectPageProps) {
     data: { visits: { increment: 1 } },
   });
 
+  // Realiza la redirección
   redirect(url.original);
+
+  // Devuelve null o nada ya que la redirección detendrá el renderizado adicional
+  return null;
 }
