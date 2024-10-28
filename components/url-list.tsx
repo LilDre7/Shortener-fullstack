@@ -19,7 +19,7 @@ export default function UrlList() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const shortenerUrl = (code: string) =>
-    `${process.env.NEXT_PUBLIC_BASE_URL}/${code}`;
+    `${process.env.DATABASE_URL}/${code}`;
 
   const fetchUrls = async () => {
     setIsLoading(true);
