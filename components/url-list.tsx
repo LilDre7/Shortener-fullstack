@@ -12,7 +12,6 @@ type Url = {
   visits: number;
 };
 
-// eslint-disable-next-line @next/next/no-async-client-component
 export default function UrlList() {
   const [urls, setUrls] = useState<Url[]>([]);
   const [copied, setCopied] = useState<boolean>(false);
