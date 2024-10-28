@@ -1,12 +1,14 @@
-import { NextPage } from "next"; // Importar el tipo NextPage
 import prisma from "@/lib/db";
 import { redirect } from "next/navigation";
+import { NextPage } from "next"; // Asegúrate de que esto esté importado
 
 interface RedirectPageProps {
-  params: { shortcode: string };
+  params: {
+    shortcode: string;
+  };
 }
 
-// Definir el componente como un NextPage
+// Cambiar el componente para que use NextPage sin parámetros asíncronos
 const RedirectPage: NextPage<RedirectPageProps> = async ({ params }) => {
   const { shortcode } = params;
 
@@ -25,11 +27,9 @@ const RedirectPage: NextPage<RedirectPageProps> = async ({ params }) => {
     data: { visits: { increment: 1 } },
   });
 
-  // Realiza la redirección
-  redirect(url.original);
+  redirect(url.original); // Realiza la redirección
 
-  // Devuelve null o nada ya que la redirección detendrá el renderizado adicional
-  return null;
+  return null; // No es necesario renderizar nada más
 };
 
 export default RedirectPage;
