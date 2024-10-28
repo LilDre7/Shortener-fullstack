@@ -2,11 +2,12 @@ import prisma from "@/lib/db";
 import { redirect } from "next/navigation";
 
 interface RedirectPageProps {
-  params: {shortcode: string}
+  params: { shortcode: string };
 }
 
-export default async function  RedirectPage({params}: RedirectPageProps) {
-  const { shortcode } = await  Promise.resolve(params);
+export default async function RedirectPage({ params }: RedirectPageProps) {
+  // Elimina `Promise.resolve` y desestructura directamente
+  const { shortcode } = params;
 
   const url = await prisma.url.findUnique({
     where: { shortCode: shortcode },
