@@ -24,11 +24,13 @@ export default function UrlList() {
     setIsLoading(true);
     try {
       const response = await fetch("/api/urls");
+      console.log(response);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       setUrls(data);
+      console.log(data);
     } catch (error) {
       console.log("Error fetching URLs 💀 ", error);
     } finally {
