@@ -18,13 +18,13 @@ export default function UrlList() {
   const [copyUrl, setCopyUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const shortenerUrl = (code: string) =>
-    `${process.env.DATABASE_URL}/${code}`;
+  const shortenerUrl = (code: string) => `${window.location.origin}/${code}`;
+
 
   const fetchUrls = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("/app/api/urls");
+      const response = await fetch("/api/urls");
       const data = await response.json();
       setUrls(data);
     } catch (error) {
