@@ -6,7 +6,7 @@ interface RedirectPageProps {
 }
 
 export default async function RedirectPage({ params }: RedirectPageProps) {
-  // Elimina `Promise.resolve` y desestructura directamente
+  // Elimina Promise.resolve y desestructura directamente
   const { shortcode } = params;
 
   const url = await prisma.url.findUnique({
