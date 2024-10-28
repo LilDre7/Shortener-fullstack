@@ -20,13 +20,14 @@ export default function UrlList() {
 
   const shortenerUrl = (code: string) => `${window.location.origin}/${code}`;
 
-
   const fetchUrls = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("/app/api/urls");
+      const response = await fetch("/app/api/urls/");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
-
       setUrls(data);
     } catch (error) {
       console.log("Error fetching URLs 💀 ", error);
@@ -34,7 +35,7 @@ export default function UrlList() {
       setIsLoading(false);
     }
   };
-  
+
   function handleCopyUrl(code: string) {
     const fullUrl = `${shortenerUrl(code)}`;
     navigator.clipboard.writeText(fullUrl).then(() => {
