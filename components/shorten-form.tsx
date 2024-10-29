@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-
+import { RainbowButton } from "./ui/rainbow-button";
 interface ShortenFormProps {
   handleUrlShortened: () => void;
 }
@@ -35,22 +35,29 @@ export default function ShortenForm({ handleUrlShortened }: ShortenFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-[300px] sm:max-w-[800px] mx-auto mt-5 mb-6">
-      <div className="space-y-4 mx-auto">
-        <Input
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          type="url"
-          placeholder="Enter URL to shorten"
-          className="h-12"
-          required
-        />
-        <div className="flex justify-center">
-          <Button type="submit" className="w-full p-2" disabled={isLoading}>
-            {isLoading ? "Shortening..." : "Shorten URL"}
-          </Button>
+    <>
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-[300px] sm:max-w-[800px] mx-auto mt-5 mb-6"
+      >
+        <div className="space-y-4 mx-auto">
+          <Input
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            type="url"
+            placeholder="Enter URL to shorten"
+            className="h-12"
+            required
+          />
+          <div className="rounded-sm flex justify-center">
+            <RainbowButton className="w-full p-2">
+              <Button type="submit" className="w-full p-2" disabled={isLoading}>
+                {isLoading ? "Shortening..." : "Shorten URL"}
+              </Button>
+            </RainbowButton>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </>
   );
 }
