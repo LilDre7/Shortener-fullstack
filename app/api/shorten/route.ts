@@ -1,3 +1,5 @@
+"use server"
+
 import prisma from "@/lib/db";
 import { nanoid } from "nanoid";
 import { NextRequest, NextResponse } from "next/server";
