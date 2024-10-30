@@ -70,7 +70,7 @@ export default function HyperText({
 
   return (
     <div
-      className="flex justify-center px-3 sm:px-0 overflow-hidden py-2 cursor-default scale-100"
+      className="flex flex-wrap justify-center px-7 sm:px-0 overflow-hidden py-2 cursor-default scale-100"
       onMouseEnter={triggerAnimation}
     >
       <AnimatePresence mode="wait">

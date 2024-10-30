@@ -1,8 +1,43 @@
-import React from "react";
 import DotPattern from "./dot-pattern";
 import { cn } from "@/lib/utils";
+import React, { FormEvent, useRef } from "react";
+import emailjs from "@emailjs/browser";
+import confetti from "canvas-confetti";
 
 export default function Footer() {
+  const form = useRef<HTMLFormElement>(null);
+
+  const fireConfetti = () => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
+  };
+
+  const sendEmail = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (form.current) {
+      emailjs
+        .sendForm(
+          process.env.EMAILJS_SERVICE_ID || "service_wggb1rt",
+          process.env.EMAILJS_TEMPLATE_ID || "template_vyufg5h",
+          form.current,
+          process.env.EMAILJS_PUBLIC_KEY || "EQnk4jDWH6qVeKX9w"
+        )
+        .then(
+          () => {
+            form.current?.reset();
+            fireConfetti();
+          },
+          (error) => {
+            console.log("FAILED...", error.text);
+          }
+        );
+    }
+  };
+
   return (
     <footer className="py-12 px-10 font-sans tracking-wide">
       <DotPattern
@@ -18,19 +53,25 @@ export default function Footer() {
           simplemente quieres conectar, envíame un mensaje.
         </p>
 
-        <div className="bg-[#dddddd] flex px-2 py-1.5 rounded-full text-left mt-10">
+        <form
+          ref={form}
+          onSubmit={sendEmail}
+          className="bg-[#dddddd] outline-none flex px-2 py-1.5 rounded-full text-left mt-10"
+        >
           <input
-            type="email"
             placeholder="Enter your email"
             className="w-full outline-none bg-transparent text-sm pl-4"
+            required
+            type="email"
+            name="user_email"
           />
           <button
-            type="button"
             className="bg-gray-600 hover:bg-gray-700 text-white text-sm rounded-full px-5 py-2.5 ml-4 transition-all"
+            type="submit"
           >
             Submit
           </button>
-        </div>
+        </form>
       </div>
 
       <hr className="border-gray-300 my-12" />
@@ -41,7 +82,7 @@ export default function Footer() {
           <ul className="flex justify-center gap-6">
             <li>
               <a
-                href="https://linkedin.com/in/yourprofile"
+                href="https://www.linkedin.com/in/alvaro-aburto-dev/"
                 className="text-gray-500 hover:text-gray-800 text-[15px]"
               >
                 LinkedIn
@@ -49,7 +90,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="https://github.com/yourprofile"
+                href="https://github.com/LilDre7"
                 className="text-gray-500 hover:text-gray-800 text-[15px]"
               >
                 GitHub
@@ -57,7 +98,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="https://yourportfolio.com"
+                href="https://alvaro-website.vercel.app/"
                 className="text-gray-500 hover:text-gray-800 text-[15px]"
               >
                 Portfolio
@@ -97,7 +138,7 @@ export default function Footer() {
               href="mailto:youremail@example.com"
               className="text-gray-800 hover:text-gray-500"
             >
-              youremail@example.com
+              <span className="text-blue-500 text-base"> alvaroaburto71@gmail.com</span>
             </a>
             .
           </p>
