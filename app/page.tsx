@@ -19,7 +19,7 @@ export default function Home() {
   };
 
   return (
-    <main className="mx-auto max-w-xl py-12 md:py-5 space-y-6">
+    <main className="mx-auto max-w-xl py-3 sm:py-12 md:py-5 space-y-6">
       <ShimmerButton onClick={handleScrolls} className="shadow-2xl mx-auto">
         <button className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
           Contactame
