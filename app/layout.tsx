@@ -16,10 +16,6 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Shortener App",
   description: "Generated your short link easily",
-  icons: {
-    icon: "/icon.svg"
-  }
-
 };
 
 export default function RootLayout({
@@ -29,6 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link rel="shortcut icon" href="/http.png" type="image/x-icon" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
