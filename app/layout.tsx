@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "Shortener App",
   description: "Generated your short link easily",
   icons: {
-    icon: "/public/icon.svg"
+    icon: "/icon.svg"
   }
 
 };
