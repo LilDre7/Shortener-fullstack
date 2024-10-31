@@ -89,7 +89,7 @@ export default function UrlList() {
             className="my-7 gap-7 border-b-2 bg-card rounded-md text-card-foreground border p-3"
           >
             <Link
-              className="text-blue-600"
+              className="text-blue-600 break-all w-full"
               target="_blank"
               href={`/${url.shortCode}`}
             >
