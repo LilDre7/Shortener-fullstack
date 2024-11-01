@@ -48,7 +48,7 @@ export default function Footer() {
       />
       <div className="lg:max-w-[80%] mx-auto text-center">
         <h3 className="text-3xl font-bold text-gray-800">Conecta Conmigo</h3>
-        <p className="text-sm mt-6 text-gray-500">
+        <p className="text-center text-sm mt-6 text-gray-500">
           Siempre estoy buscando colaborar en proyectos interesantes y conocer
           personas en la industria. Si tienes alguna idea, proyecto, o
           simplemente quieres conectar, envíame un mensaje.
@@ -135,6 +135,8 @@ export default function Footer() {
             la industria 🛠️. Soy una persona comprometida, apasionada y creativa
             que siempre busca superar los desafíos y ofrecer soluciones
             innovadoras.
+          </p>
+          <p className="text-center mt-4">
             <a
               href="alvaroaburto71@gmail.com"
               className="text-gray-800 hover:text-gray-500"
@@ -143,12 +145,11 @@ export default function Footer() {
                 alvaroaburto71@gmail.com
               </span>
             </a>
-            .
           </p>
         </div>
         <div>
-          <div className="rounded-lg m-4">
-            <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+          <div className="rounded-lg my-6 sm:m-4">
+            <div className="w-full max-w-screen-xl mx-auto sm:p-4 md:py-8">
               <div className="sm:flex sm:items-center sm:justify-between">
                 <a
                   href="https://www.linkedin.com/in/alvaro-aburto-dev/"
@@ -160,17 +161,17 @@ export default function Footer() {
                     alt="Flowbite Logo"
                   />
                   <span className="self-center text-base font-semibold whitespace-nowrap dark:text-white">
-                    Alvaro Aburto Ocampo
+                    Alvaro Aburto Ocampo - DEV 
                   </span>
                 </a>
-                <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
-                  <li>
+                <ul className="flex text-transparent sm:text-current flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
                     <a
                       href="https://www.linkedin.com/in/alvaro-aburto-dev/"
                       className="hover:underline me-4 md:me-6"
                     >
-                      Contactame
+                      CONTACTAME
                     </a>
+                  <li>
                   </li>
                 </ul>
               </div>
