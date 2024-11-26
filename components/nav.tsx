@@ -9,11 +9,11 @@ export function NavBar() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-50 max-w-[350px] sm:max-w-[500px] mx-auto mb-10">
+      <div className="fixed top-0 left-0 right-0 z-50 max-w-[350px] sm:max-w-[500px] mx-auto">
         <nav className="mx-4 my-4 flex items-center justify-between rounded-full bg-zinc-900 px-4 py-2 text-white">
           <Button
             variant="ghost"
-            className="p-2 hover:bg-zinc-800"
+            className="p-2 hover:bg-blue-300"
             onClick={() => setIsOpen(true)}
           >
             <Menu className="h-5 w-5" />
@@ -41,7 +41,7 @@ export function NavBar() {
             >
               CLOSE
             </Button>
-            <h1 className="text-2xl font-serif text-white">Burner</h1>
+            <h1 className="text-2xl font-serif text-white">URL</h1>
             <div className="w-[70px]" /> {/* Spacer for centering */}
             <Link className="text-white" />
           </div>
