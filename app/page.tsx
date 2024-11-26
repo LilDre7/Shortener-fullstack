@@ -1,30 +1,22 @@
 "use client";
 
+import { NavBar } from "@/components/nav";
 import DotPattern from "@/components/ui/dot-pattern";
 import Footer from "@/components/ui/footer";
 import HyperText from "@/components/ui/hyper-text";
 import { VelocityScroll } from "@/components/ui/scroll-based-velocity";
-import ShimmerButton from "@/components/ui/shimmer-button";
 import SparklesText from "@/components/ui/sparkles-text";
 import UrlShortenerContainer from "@/components/url-shortener-container";
 import { cn } from "@/lib/utils";
 
 export default function Home() {
-  const handleScrolls = () => {
-    const targetSection = document.getElementById("target-section");
-
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: "smooth", inline: "center" }); // Desplazamiento suave
-    }
-  };
 
   return (
     <main className="mx-auto max-w-xl pt-3 sm:pt-12 md:pt-5 space-y-6">
-      <ShimmerButton onClick={handleScrolls} className="shadow-2xl mx-auto">
-        <button className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-          Contactame
-        </button>
-      </ShimmerButton>
+      <div className="pb-12">
+      <NavBar />
+      </div>
+        
       <div className="flex relative w-full">
         <DotPattern
           className={cn(
