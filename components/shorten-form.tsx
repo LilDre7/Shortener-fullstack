@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Input } from "./ui/input";
-import ShinyButton from "./ui/shiny-button";
+import { Zap, Link2 } from "lucide-react";
+
 interface ShortenFormProps {
   handleUrlShortened: () => void;
 }
@@ -27,40 +27,71 @@ export default function ShortenForm({ handleUrlShortened }: ShortenFormProps) {
       setUrl("");
       handleUrlShortened();
     } catch (error) {
-      console.log("Error shortening URL 💀 :", error);
+      console.log("Error shortening URL:", error);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <>
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-[300px] sm:max-w-[800px] mx-auto mt-5 mb-6"
-      >
-        <div className="space-y-4 mx-auto ">
-          <Input
+    <div className="max-w-2xl mx-auto">
+      <div className="text-center mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          Create Short Link
+        </h2>
+        <p className="text-gray-600">
+          Transform any long URL into a clean, shareable link
+        </p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="relative">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+            <Link2 className="h-5 w-5" />
+          </div>
+          <input
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             type="url"
-            placeholder="Enter URL to shorten"
-            className="h-12 placeholder:text-black placeholder:uppercase placeholder:text-sm"
+            placeholder="Enter your long URL here..."
+            className="modern-input pl-12"
             required
           />
-          <div className="rounded-sm flex justify-center">
-            <ShinyButton className="w-full p-2">
-              <button
-                type="submit"
-                className="w-full p-2 uppercase text-black font-bold"
-                disabled={isLoading}
-              >
-                {isLoading ? "Shortening..." : "Shorten URL"}
-              </button>
-            </ShinyButton>
-          </div>
         </div>
+
+        <button
+          type="submit"
+          className="modern-button flex items-center justify-center gap-2 group"
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <>
+              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+              Creating Link...
+            </>
+          ) : (
+            <>
+              <Zap className="h-5 w-5 group-hover:animate-pulse" />
+              Shorten URL
+            </>
+          )}
+        </button>
       </form>
-    </>
+
+      <div className="mt-8 flex items-center justify-center gap-8 text-sm text-gray-500">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+          <span>Instant</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+          <span>Secure</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+          <span>Analytics</span>
+        </div>
+      </div>
+    </div>
   );
 }

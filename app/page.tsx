@@ -1,47 +1,38 @@
 "use client";
 
 import { NavBar } from "@/components/nav";
-import DotPattern from "@/components/ui/dot-pattern";
-import Footer from "@/components/ui/footer";
-import HyperText from "@/components/ui/hyper-text";
-import { VelocityScroll } from "@/components/ui/scroll-based-velocity";
-import SparklesText from "@/components/ui/sparkles-text";
 import UrlShortenerContainer from "@/components/url-shortener-container";
-import { cn } from "@/lib/utils";
 
 export default function Home() {
-
   return (
-    <main className="mx-auto max-w-xl pt-3 sm:pt-12 md:pt-5 space-y-6">
-      <div className="pb-12">
-      <NavBar />
+    <div className="min-h-screen relative">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-indigo-400/20 to-purple-400/20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"></div>
       </div>
-        
-      <div className="flex relative w-full">
-        <DotPattern
-          className={cn(
-            "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]"
-          )}
-        />
 
-        <div className="w-full space-y-3 text-center">
-          <SparklesText text="Short Links With" />
-          <HyperText text="Shorten your URLs and share then easily" />
+      <NavBar />
+
+      <main className="container mx-auto px-4 py-12 max-w-4xl relative z-10">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-indigo-50 border border-indigo-100">
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            <span className="text-xs font-medium text-indigo-700">Live</span>
+          </div>
+
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <span className="gradient-text">Shortify</span>
+          </h1>
+
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Transform your long URLs into clean, shareable links.
+            <span className="text-indigo-600 font-medium"> Fast, simple, and beautiful.</span>
+          </p>
         </div>
-      </div>
-      <div>
+
         <UrlShortenerContainer />
-      </div>
-      <div id="target-section">
-        <VelocityScroll
-          text="Alvaro Aburto - Desarrollador Web"
-          default_velocity={5}
-          className="font-display text-center text-4xl font-bold track-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-7xl md:leading-[5rem]"
-        />
-      </div>
-      <div>
-        <Footer />
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
