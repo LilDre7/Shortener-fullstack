@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Copy, Check, Eye, BarChart3, ExternalLink, Calendar } from "lucide-react";
+import { Copy, Check, Eye, ExternalLink } from "lucide-react";
 
 type Url = {
   id: string;
@@ -51,16 +51,12 @@ export default function UrlList() {
 
   if (isLoading) {
     return (
-      <div className="space-y-4">
+      <div className="space-y-3">
         {[1, 2, 3].map((num) => (
-          <div key={num} className="url-card">
+          <div key={num} className="border border-gray-100 rounded-lg p-4">
             <div className="animate-pulse space-y-3">
-              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-              <div className="h-3 bg-gray-100 rounded w-1/2"></div>
-              <div className="flex gap-4">
-                <div className="h-8 bg-gray-200 rounded-lg w-20"></div>
-                <div className="h-8 bg-gray-200 rounded-lg w-20"></div>
-              </div>
+              <div className="h-4 bg-gray-100 rounded w-3/4"></div>
+              <div className="h-3 bg-gray-50 rounded w-1/2"></div>
             </div>
           </div>
         ))}
@@ -70,98 +66,73 @@ export default function UrlList() {
 
   if (urls.length === 0) {
     return (
-      <div className="text-center py-16">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
-          <BarChart3 className="h-8 w-8 text-gray-400" />
-        </div>
-        <h3 className="text-lg font-medium text-gray-900 mb-2">No links yet</h3>
-        <p className="text-gray-600">Create your first short link above</p>
+      <div className="text-center py-12">
+        <p className="text-gray-400">Aún no hay enlaces acortados</p>
       </div>
     );
   }
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-2xl font-bold text-gray-900">Your Links</h2>
-        <div className="flex items-center gap-2 text-sm text-gray-500">
-          <BarChart3 className="h-4 w-4" />
-          {urls.length} {urls.length === 1 ? 'link' : 'links'}
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-medium text-gray-900">Tus enlaces</h2>
+        <div className="text-sm text-gray-400">
+          {urls.length} {urls.length === 1 ? 'enlace' : 'enlaces'}
         </div>
       </div>
 
-      <div className="space-y-4">
-        {urls.map((url, index) => (
-          <div key={url.id} className="url-card group">
-            <div className="flex items-start justify-between mb-3">
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-medium text-indigo-600 bg-indigo-50 px-2 py-1 rounded-full">
-                    #{index + 1}
-                  </span>
+      <div className="space-y-3">
+        {urls.map((url) => (
+          <div key={url.id} className="border border-gray-100 rounded-lg p-4 hover:border-gray-200 transition-colors">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1 min-w-0 space-y-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   {url.createdAt && (
-                    <span className="text-xs text-gray-500 flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
+                    <span className="text-xs text-gray-400">
                       {new Date(url.createdAt).toLocaleDateString()}
                     </span>
                   )}
                 </div>
 
                 <Link
-                  className="text-lg font-mono text-gray-900 hover:text-indigo-600 transition-colors block mb-2 group-hover:underline"
+                  className="text-sm font-mono text-gray-900 hover:text-gray-600 transition-colors block"
                   target="_blank"
                   href={`/${url.shortCode}`}
                 >
                   {shortenerUrl(url.shortCode)}
                 </Link>
 
-                <p className="text-sm text-gray-600 truncate">
+                <p className="text-sm text-gray-500 truncate">
                   {url.original}
                 </p>
               </div>
 
-              <Link
-                href={`/${url.shortCode}`}
-                target="_blank"
-                className="p-2 text-gray-400 hover:text-indigo-600 transition-colors rounded-lg hover:bg-indigo-50 ml-4"
-              >
-                <ExternalLink className="h-4 w-4" />
-              </Link>
-            </div>
-
-            <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 flex-shrink-0">
                 <button
                   onClick={() => handleCopyUrl(url.shortCode)}
-                  className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all duration-200"
+                  className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                  title={copied === url.shortCode ? "Copiado" : "Copiar enlace"}
                 >
                   {copied === url.shortCode ? (
-                    <>
-                      <Check className="h-4 w-4 text-green-600" />
-                      <span className="text-green-600">Copied!</span>
-                    </>
+                    <Check className="h-4 w-4 text-green-600" />
                   ) : (
-                    <>
-                      <Copy className="h-4 w-4" />
-                      Copy
-                    </>
+                    <Copy className="h-4 w-4" />
                   )}
                 </button>
 
-                <div className="flex items-center gap-1 text-sm text-gray-500">
-                  <Eye className="h-4 w-4" />
-                  <span>{url.visits}</span>
-                  <span className="text-xs text-gray-400">clicks</span>
-                </div>
-              </div>
+                <Link
+                  href={`/${url.shortCode}`}
+                  target="_blank"
+                  className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                  title="Abrir enlace"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                </Link>
 
-              <div className="flex items-center gap-1">
-                {[...Array(3)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="w-1 h-1 rounded-full bg-gray-300"
-                  />
-                ))}
+                <div className="flex items-center gap-1 text-xs text-gray-400 px-2">
+                  <Eye className="h-3 w-3" />
+                  <span>{url.visits}</span>
+                </div>
               </div>
             </div>
           </div>

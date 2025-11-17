@@ -12,8 +12,8 @@ export default function UrlShortenerContainer() {
   };
 
   return (
-    <div className="space-y-16">
-      <div className="glass-card p-8 md:p-12">
+    <div className="space-y-20">
+      <div className="border border-gray-100 rounded-xl p-6 md:p-8">
         <ShortenForm handleUrlShortened={handleUrlShortened} />
       </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Zap, Link2 } from "lucide-react";
+import { Link2 } from "lucide-react";
 
 interface ShortenFormProps {
   handleUrlShortened: () => void;
@@ -34,62 +34,52 @@ export default function ShortenForm({ handleUrlShortened }: ShortenFormProps) {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          Create Short Link
-        </h2>
-        <p className="text-gray-600">
-          Transform any long URL into a clean, shareable link
-        </p>
-      </div>
-
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="relative">
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-            <Link2 className="h-5 w-5" />
+    <div className="w-full max-w-2xl mx-auto">
+      <form onSubmit={handleSubmit} className="group">
+        <div className="flex border border-gray-200 rounded-xl overflow-hidden focus-within:border-gray-400 transition-colors">
+          <div className="relative flex-1">
+            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+              <Link2 className="h-5 w-5" />
+            </div>
+            <input
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              type="url"
+              placeholder="Pega tu enlace largo aquí"
+              className="w-full px-4 pl-12 py-3 text-gray-900 placeholder-gray-400 bg-white border-0 outline-none text-base focus:ring-0"
+              required
+            />
           </div>
-          <input
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            type="url"
-            placeholder="Enter your long URL here..."
-            className="modern-input pl-12"
-            required
-          />
-        </div>
 
-        <button
-          type="submit"
-          className="modern-button flex items-center justify-center gap-2 group"
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <>
-              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-              Creating Link...
-            </>
-          ) : (
-            <>
-              <Zap className="h-5 w-5 group-hover:animate-pulse" />
-              Shorten URL
-            </>
-          )}
-        </button>
+          <button
+            type="submit"
+            className="px-6 py-3 bg-gray-900 text-white font-medium hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isLoading || !url}
+          >
+            {isLoading ? (
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                <span>Acortando...</span>
+              </div>
+            ) : (
+              <span>Acortar</span>
+            )}
+          </button>
+        </div>
       </form>
 
-      <div className="mt-8 flex items-center justify-center gap-8 text-sm text-gray-500">
+      <div className="mt-6 flex items-center justify-center gap-6 text-xs text-gray-400">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-          <span>Instant</span>
+          <div className="w-1.5 h-1.5 bg-gray-300 rounded-full"></div>
+          <span>Instantáneo</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-          <span>Secure</span>
+          <div className="w-1.5 h-1.5 bg-gray-300 rounded-full"></div>
+          <span>Seguro</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-          <span>Analytics</span>
+          <div className="w-1.5 h-1.5 bg-gray-300 rounded-full"></div>
+          <span>Análisis</span>
         </div>
       </div>
     </div>
