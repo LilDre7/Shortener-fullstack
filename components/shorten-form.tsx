@@ -76,15 +76,15 @@ export default function ShortenForm({ handleUrlShortened }: ShortenFormProps) {
 
       <div className="mt-6 flex items-center justify-center gap-6 text-xs text-gray-400">
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 bg-gray-300 rounded-full"></div>
+          <div className="w-1.5 h-1.5 bg-green-600 rounded-full"></div>
           <span>Instantáneo</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 bg-gray-300 rounded-full"></div>
+          <div className="w-1.5 h-1.5 bg-green-600 rounded-full"></div>
           <span>Seguro</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 bg-gray-300 rounded-full"></div>
+          <div className="w-1.5 h-1.5 bg-green-600 rounded-full"></div>
           <span>Análisis</span>
         </div>
       </div>
