@@ -77,27 +77,25 @@ export function AnimatedGridPattern({
     }
   }, [dimensions, numSquares, generateSquares])
 
-  // Resize observer to update container dimensions
+  // Window resize listener to update dimensions to viewport size
   useEffect(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        setDimensions({
-          width: entry.contentRect.width,
-          height: entry.contentRect.height,
-        })
-      }
-    })
-
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current)
+    const updateDimensions = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      })
     }
+
+    // Set initial dimensions
+    updateDimensions()
+
+    // Listen for window resize
+    window.addEventListener('resize', updateDimensions)
 
     return () => {
-      if (containerRef.current) {
-        resizeObserver.unobserve(containerRef.current)
-      }
+      window.removeEventListener('resize', updateDimensions)
     }
-  }, [containerRef])
+  }, [])
 
   return (
     <svg

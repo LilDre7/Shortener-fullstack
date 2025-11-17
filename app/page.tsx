@@ -6,9 +6,9 @@ import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 
 export default function Home() {
   return (
-    <div>
+    <div className="relative min-h-screen bg-white">
       <AnimatedGridPattern />
-      <div className="min-h-screen bg-white">
+      <div className="relative z-10 min-h-screen">
         <NavBar />
 
         <main className="container mx-auto px-4 py-20 max-w-4xl">
