@@ -42,7 +42,7 @@ export default function ShortenForm({ handleUrlShortened }: ShortenFormProps) {
   return (
     <div className="w-full max-w-2xl mx-auto">
       <form onSubmit={handleSubmit} className="group">
-        <div className="flex border border-gray-200 rounded-xl overflow-hidden focus-within:border-gray-400 transition-colors">
+        <div className="flex border border-black rounded-xl overflow-hidden focus-within:border-gray-400 transition-colors">
           <div className="relative flex-1">
             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
               <Link2 className="h-5 w-5" />

@@ -93,7 +93,7 @@ export default function UrlList() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-medium text-gray-900">Tus enlaces</h2>
+        <h2 className="pr-4 font-mono text-sm font-medium text-gray-900">Tus enlaces</h2>
         <div className="text-sm text-gray-400">
           {urls.length} {urls.length === 1 ? 'enlace' : 'enlaces'}
         </div>
@@ -128,7 +128,7 @@ export default function UrlList() {
               <div className="flex items-center gap-2 flex-shrink-0">
                 <button
                   onClick={() => handleCopyUrl(url.shortCode)}
-                  className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                  className="p-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
                   title={copied === url.shortCode ? "Copiado" : "Copiar enlace"}
                 >
                   {copied === url.shortCode ? (
@@ -141,7 +141,7 @@ export default function UrlList() {
                 <Link
                   href={`/${url.shortCode}`}
                   target="_blank"
-                  className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                  className="p-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
                   title="Abrir enlace"
                 >
                   <ExternalLink className="h-4 w-4" />
@@ -155,7 +155,7 @@ export default function UrlList() {
                   <Trash2 className="h-4 w-4" />
                 </button>
 
-                <div className="flex items-center gap-1 text-xs text-gray-400 px-2">
+                <div className="flex items-center gap-1 text-xs text-black px-2">
                   <Eye className="h-3 w-3" />
                   <span>{url.visits}</span>
                 </div>
