@@ -46,10 +46,6 @@ export default function UrlList() {
   }
 
   async function handleDeleteUrl(id: string) {
-    if (!confirm('¿Estás seguro de que quieres eliminar este enlace?')) {
-      return;
-    }
-
     try {
       const response = await fetch(`/api/urls?id=${id}`, {
         method: 'DELETE',
