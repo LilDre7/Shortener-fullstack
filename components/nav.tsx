@@ -9,12 +9,11 @@ export function NavBar() {
         <div className="flex items-center justify-between h-14">
           <div className="flex items-center gap-2">
             <Link2 className="h-4 w-4 text-gray-900" />
-            <span className="text-lg font-medium text-gray-900">Shortify</span>
           </div>
 
           <div className="flex items-center gap-1">
             <a
-              href="https://github.com"
+              href="https://github.com/LilDre7/Shortener-fullstack"
               className="p-2 text-gray-400 hover:text-gray-900 transition-colors rounded-lg hover:bg-gray-50"
               target="_blank"
               rel="noopener noreferrer"

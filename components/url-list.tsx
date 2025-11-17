@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Copy, Check, Eye, ExternalLink } from "lucide-react";
+import { Copy, Check, Eye, ExternalLink, Trash2 } from "lucide-react";
 
 type Url = {
   id: string;
@@ -43,6 +43,28 @@ export default function UrlList() {
         setCopied("");
       }, 2000);
     });
+  }
+
+  async function handleDeleteUrl(id: string) {
+    if (!confirm('¿Estás seguro de que quieres eliminar este enlace?')) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/urls?id=${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error al eliminar: ${response.statusText}`);
+      }
+
+      // Refresh the URLs list
+      await fetchUrls();
+    } catch (error) {
+      console.error('Error al eliminar la URL:', error);
+      alert('Hubo un error al eliminar el enlace');
+    }
   }
 
   useEffect(() => {
@@ -128,6 +150,14 @@ export default function UrlList() {
                 >
                   <ExternalLink className="h-4 w-4" />
                 </Link>
+
+                <button
+                  onClick={() => handleDeleteUrl(url.id)}
+                  className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                  title="Eliminar enlace"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </button>
 
                 <div className="flex items-center gap-1 text-xs text-gray-400 px-2">
                   <Eye className="h-3 w-3" />

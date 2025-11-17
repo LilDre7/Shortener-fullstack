@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Link2 } from "lucide-react";
+import Confetti from "./confetti";
 
 interface ShortenFormProps {
   handleUrlShortened: () => void;
@@ -10,6 +11,7 @@ interface ShortenFormProps {
 export default function ShortenForm({ handleUrlShortened }: ShortenFormProps) {
   const [url, setUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showConfetti, setShowConfetti] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,9 +25,17 @@ export default function ShortenForm({ handleUrlShortened }: ShortenFormProps) {
           url,
         }),
       });
-      await response.json();
-      setUrl("");
-      handleUrlShortened();
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setUrl("");
+        handleUrlShortened();
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 4000);
+      } else {
+        console.log("Error shortening URL:", data.error);
+      }
     } catch (error) {
       console.log("Error shortening URL:", error);
     } finally {
@@ -35,6 +45,7 @@ export default function ShortenForm({ handleUrlShortened }: ShortenFormProps) {
 
   return (
     <div className="w-full max-w-2xl mx-auto">
+      <Confetti trigger={showConfetti} />
       <form onSubmit={handleSubmit} className="group">
         <div className="flex border border-gray-200 rounded-xl overflow-hidden focus-within:border-gray-400 transition-colors">
           <div className="relative flex-1">
