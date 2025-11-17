@@ -102,7 +102,7 @@ export default function UrlList() {
                   {shortenerUrl(url.shortCode)}
                 </Link>
 
-                <p className="text-sm text-gray-500 truncate">
+                <p className="text-sm text-gray-500 break-all" title={url.original}>
                   {url.original}
                 </p>
               </div>
