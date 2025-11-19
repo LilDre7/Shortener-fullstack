@@ -113,7 +113,7 @@ export default function UrlList() {
                 </div>
 
                 <Link
-                  className="text-sm font-mono text-gray-900 hover:text-gray-600 transition-colors block"
+                  className="text-sm font-mono text-gray-900 hover:text-gray-600 transition-colors block break-words whitespace-nowrap"
                   target="_blank"
                   href={`/${url.shortCode}`}
                 >
