@@ -92,8 +92,8 @@ export default function UrlList() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="pr-4 font-mono text-sm font-medium text-gray-900">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
+        <h2 className="font-mono text-sm font-medium text-gray-900">
           Tus enlaces
         </h2>
         <div className="text-sm text-gray-400">
@@ -101,14 +101,14 @@ export default function UrlList() {
         </div>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         {urls.map((url) => (
           <div
             key={url.id}
-            className="border border-gray-100 rounded-lg p-4 hover:border-gray-200 transition-colors"
+            className="border border-gray-100 rounded-lg p-4 sm:p-5 hover:border-gray-200 transition-colors"
           >
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex-1 min-w-0 w-full max-w-full space-y-2">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div className="flex-1 min-w-0 space-y-3">
                 <div className="flex items-center gap-2 flex-wrap">
                   {url.createdAt && (
                     <span className="text-xs text-gray-400">
@@ -118,50 +118,52 @@ export default function UrlList() {
                 </div>
 
                 <Link
-                  className="mt-2 text-sm font-mono text-gray-900 hover:text-gray-600
-    transition-colors break-all break-words"
+                  className="block text-sm font-mono text-gray-900 hover:text-gray-600
+    transition-colors break-all leading-relaxed"
                   target="_blank"
                   href={`/${url.shortCode}`}
                 >
                   {shortenerUrl(url.shortCode)}
                 </Link>
 
-                <p className="text-sm text-gray-500" title={url.original}>
+                <p className="text-sm text-gray-500 break-all leading-relaxed" title={url.original}>
                   {url.original}
                 </p>
               </div>
 
-              <div className="flex items-center gap-2 flex-shrink-0">
-                <button
-                  onClick={() => handleCopyUrl(url.shortCode)}
-                  className="p-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
-                  title={copied === url.shortCode ? "Copiado" : "Copiar enlace"}
-                >
-                  {copied === url.shortCode ? (
-                    <Check className="h-4 w-4 text-green-600" />
-                  ) : (
-                    <Copy className="h-4 w-4" />
-                  )}
-                </button>
+              <div className="flex items-center justify-between sm:flex-col sm:justify-end sm:items-end gap-2 flex-shrink-0">
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => handleCopyUrl(url.shortCode)}
+                    className="p-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                    title={copied === url.shortCode ? "Copiado" : "Copiar enlace"}
+                  >
+                    {copied === url.shortCode ? (
+                      <Check className="h-4 w-4 text-green-600" />
+                    ) : (
+                      <Copy className="h-4 w-4" />
+                    )}
+                  </button>
 
-                <Link
-                  href={`/${url.shortCode}`}
-                  target="_blank"
-                  className="p-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
-                  title="Abrir enlace"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                </Link>
+                  <Link
+                    href={`/${url.shortCode}`}
+                    target="_blank"
+                    className="p-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                    title="Abrir enlace"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                  </Link>
 
-                <button
-                  onClick={() => handleDeleteUrl(url.id)}
-                  className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                  title="Eliminar enlace"
-                >
-                  <Trash2 className="h-4 w-4" />
-                </button>
+                  <button
+                    onClick={() => handleDeleteUrl(url.id)}
+                    className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                    title="Eliminar enlace"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </div>
 
-                <div className="flex items-center gap-1 text-xs text-black px-2">
+                <div className="flex items-center gap-1 text-xs text-black px-2 py-1 bg-gray-50 rounded">
                   <Eye className="h-3 w-3" />
                   <span>{url.visits}</span>
                 </div>
