@@ -48,7 +48,7 @@ export default function UrlList() {
   async function handleDeleteUrl(id: string) {
     try {
       const response = await fetch(`/api/urls?id=${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
 
       if (!response.ok) {
@@ -58,8 +58,8 @@ export default function UrlList() {
       // Refresh the URLs list
       await fetchUrls();
     } catch (error) {
-      console.error('Error al eliminar la URL:', error);
-      alert('Hubo un error al eliminar el enlace');
+      console.error("Error al eliminar la URL:", error);
+      alert("Hubo un error al eliminar el enlace");
     }
   }
 
@@ -93,17 +93,22 @@ export default function UrlList() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="pr-4 font-mono text-sm font-medium text-gray-900">Tus enlaces</h2>
+        <h2 className="pr-4 font-mono text-sm font-medium text-gray-900">
+          Tus enlaces
+        </h2>
         <div className="text-sm text-gray-400">
-          {urls.length} {urls.length === 1 ? 'enlace' : 'enlaces'}
+          {urls.length} {urls.length === 1 ? "enlace" : "enlaces"}
         </div>
       </div>
 
       <div className="space-y-3">
         {urls.map((url) => (
-          <div key={url.id} className="border border-gray-100 rounded-lg p-4 hover:border-gray-200 transition-colors">
+          <div
+            key={url.id}
+            className="border border-gray-100 rounded-lg p-4 hover:border-gray-200 transition-colors"
+          >
             <div className="flex items-start justify-between gap-4">
-              <div className="flex-1 min-w-0 space-y-2">
+              <div className="flex-1 min-w-0 w-full max-w-full space-y-2">
                 <div className="flex items-center gap-2 flex-wrap">
                   {url.createdAt && (
                     <span className="text-xs text-gray-400">
@@ -113,7 +118,8 @@ export default function UrlList() {
                 </div>
 
                 <Link
-                  className="text-sm font-mono text-gray-900 hover:text-gray-600 transition-colors break-all block break-words whitespace-nowrap"
+                  className="mt-2 text-sm font-mono text-gray-900 hover:text-gray-600
+    transition-colors break-all break-words"
                   target="_blank"
                   href={`/${url.shortCode}`}
                 >
