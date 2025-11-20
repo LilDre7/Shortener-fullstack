@@ -1,7 +1,3 @@
-Claro, aquí tienes **otra versión**, igual de breve pero más pulida y directa:
-
----
-
 # 🔗 GetYourLink
 
 Acortador de enlaces fullstack hecho con **Next.js**, **TypeScript**, **Prisma** y **PostgreSQL**.
